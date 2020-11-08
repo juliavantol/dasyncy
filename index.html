@@ -8,51 +8,38 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<title> DaSynci </title>
 	</head>
-	<body>		
+	<body>
 		<div class="header">
 		DaSynci
 		</div>
-		
-		<h1> Yo waddup </h1>
-
-
-
+		<br>
+		<h5>Movie</h5>
 		<div class="slidecontainer">
-  <div class="slidecontainer">
-  <h3 id="displayValue">
-  <span id="hours">min</span> hour(s)
-  <span id="minutes">hour</span> minutes
-	  <span id="seconds">second</span> seconds
-  </h3>
-  <input type="range" min="0" max="14400" value="0" class="slider"
-		 oninput="showVal(this.value)" onchange="showVal(this.value)" id="myRange">
-</div>
-</div>
+  			<div class="slidecontainer">
+  				<h3 id="displayValue">
+  				<span id="hours">min</span>h
+				<span id="minutes">hour</span>min
+				<span id="seconds">second</span>sec
+  				</h3>
+  					<input type="range" min="0" max="14400" value="0" class="slider"
+		 			oninput="playback()" onchange="playback()" id="myRange">
+			</div>
+		</div>
+		<br><br>
+
+		<h5>Audiotrack</h5>
+		<div class="slidecontainer">
+  			<div class="slidecontainer">
+  				<h3 id="displayValue2">
+  				<span id="hours2">min</span>h
+				<span id="minutes2">hour</span>min
+				<span id="seconds2">second</span>sec
+  				</h3>
+  					<input type="range" min="0" max="14400" value="0" class="slider"
+		 			oninput="playback2()" onchange="playback2()" id="myRange2">
+			</div>
+		</div>
 
 	</body>
-
-	 <style>
-        .slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20em;
-    height: 1em;
-    background: #2C4461;
-    outline: none;
-    margin-top: 2em;
-    border-radius: 1em;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
-    background: #BAC5D2;
-}
-    </style>
-
-		<script src="slider.js"></script>
-
+	<script src="slider.js"></script>
 </html>
