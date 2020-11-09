@@ -22,7 +22,7 @@ var seconds2 = slider.value % 60;
 hourOutput2.innerHTML = hours;
 minuteOutput2.innerHTML = minutes
 secOutput2.innerHTML = seconds
-
+var testing  = document.getElementById("testing");
 
 hourOutput.innerHTML = hours;
 minuteOutput.innerHTML = minutes
@@ -41,6 +41,7 @@ function playback(){
         hourOutput2.innerHTML = hours;
         minuteOutput2.innerHTML = minutes
         secOutput2.innerHTML = seconds
+        testing.innerHTML = slider.value
 
 }
 
@@ -62,6 +63,26 @@ function playback2(){
 
 }
 
+function calculateValue() {
+    var movietime = document.time.movie.value
+    var audiotime = document.time.audio.value
 
+    // hours
+    var h = movietime[0] + movietime[1]
+    // minutes
+    var m = movietime[3] + movietime[4]
+    // seconds
+    var s = movietime[6] + movietime[7]
+
+    inth = parseInt(h, 10)
+    intm = parseInt(m, 10)
+    ints = parseInt(s, 10)
+    a = inth * 3600
+    b = intm * 60
+    c = a + b + ints
+    alert(c)
+
+}
 
 document.getElementById("mytime").value = "00:00:00";
+document.getElementById("mytime2").value = "00:00:00";
