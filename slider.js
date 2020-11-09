@@ -28,6 +28,7 @@ hourOutput.innerHTML = hours;
 minuteOutput.innerHTML = minutes
 secOutput.innerHTML = seconds
 
+// movie
 function playback(){
         var hours = Math.floor(slider.value / 3600);
         var minutes = Math.floor((slider.value % 3600) / 60);
@@ -43,6 +44,7 @@ function playback(){
 
 }
 
+// audiotrack
 function playback2(){
         var hours2 = Math.floor(slider2.value / 3600);
         var minutes2 = Math.floor((slider2.value % 3600) / 60);
@@ -61,3 +63,5 @@ function playback2(){
 }
 
 
+
+document.getElementById("mytime").value = "00:00:00";
