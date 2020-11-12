@@ -1,5 +1,4 @@
 var slider = document.getElementById("myRange");
-var output = document.getElementById("displayValue");
 var hours = Math.floor(slider.value / 60);
 var minutes = slider.value % 60;
 var minuteOutput = $("#minutes")[0];
@@ -10,19 +9,21 @@ var minutes = slider.value % 60;
 var seconds = slider.value % 60;
 //
 var slider2 = document.getElementById("myRange2");
-var output2 = document.getElementById("displayValue2");
 var hours2 = Math.floor(slider.value / 60);
 var minutes2 = slider.value % 60;
 var minuteOutput2 = $("#minutes2")[0];
 var hourOutput2 = $("#hours2")[0];
 var secOutput2 = $("#seconds2")[0];
+
 var hours2 = Math.floor(slider.value / 60);
 var minutes2 = slider.value % 60;
 var seconds2 = slider.value % 60;
 hourOutput2.innerHTML = hours;
 minuteOutput2.innerHTML = minutes
 secOutput2.innerHTML = seconds
-var testing  = document.getElementById("testing");
+
+var movieSliderValue  = document.getElementById("movieValue");
+var audioSliderValue = document.getElementById("audioValue");
 
 hourOutput.innerHTML = hours;
 minuteOutput.innerHTML = minutes
@@ -41,7 +42,9 @@ function playback(){
         hourOutput2.innerHTML = hours;
         minuteOutput2.innerHTML = minutes
         secOutput2.innerHTML = seconds
-        testing.innerHTML = slider.value
+
+        movieSliderValue.innerHTML = slider.value
+        audioSliderValue.innerHTML = slider2.value
 
 }
 
@@ -54,18 +57,23 @@ function playback2(){
         minuteOutput2.innerHTML = minutes2
         secOutput2.innerHTML = seconds2
 
+
         // moviesync
         slider.value = slider2.value
         hourOutput.innerHTML = hours2;
         minuteOutput.innerHTML = minutes2
         secOutput.innerHTML = seconds2
 
+        movieSliderValue.innerHTML = slider.value
+        audioSliderValue.innerHTML = slider2.value
 
 }
 
 function calculateValue() {
     var movietime = document.time.movie.value
     var audiotime = document.time.audio.value
+    var movielength = document.time.movielength.value
+    var audiolength = document.time.audiolength.value
 
     // hours
     var h = movietime[0] + movietime[1]
@@ -80,9 +88,11 @@ function calculateValue() {
     a = inth * 3600
     b = intm * 60
     c = a + b + ints
-    alert(c)
+
 
 }
 
-document.getElementById("mytime").value = "00:00:00";
-document.getElementById("mytime2").value = "00:00:00";
+document.getElementById("movieStart").value = "00:00:00";
+document.getElementById("audioStart").value = "00:00:00";
+document.getElementById("movieLength").value = "00:00:00";
+document.getElementById("audioLength").value = "00:00:00";

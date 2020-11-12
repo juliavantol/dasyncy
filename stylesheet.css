@@ -1,4 +1,4 @@
-.slidecontainer {
+.sliderContainer {
   width: 100%; /* Width of the outside container */
 }
 
@@ -35,4 +35,8 @@
   height: 25px; /* Slider handle height */
   background: #4CAF50; /* Green background */
   cursor: pointer; /* Cursor on hover */
+}
+
+.hide {
+    display: none;
 }

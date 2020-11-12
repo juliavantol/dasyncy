@@ -13,50 +13,55 @@
 		DaSynci
 		</div>
 		<br>
-		<h5>Movie</h5>
 
-		<h3 id="testing"> </h3>
-		<div class="slidecontainer">
-  			<div class="slidecontainer">
-  				<h3 id="displayValue">
+		<div class="sliderContainer">
+			<h5>Movie</h5>
+			<h3 id="movieValue"> </h3>
   				<span id="hours">min</span>h
 				<span id="minutes">hour</span>min
 				<span id="seconds">second</span>sec
-  				</h3>
+
   					<input type="range" min="0" max="14400" value="0" class="slider"
 		 			oninput="playback()" onchange="playback()" id="myRange">
-			</div>
-		</div>
-		<br><br>
 
-		<h5>Audiotrack</h5>
-		<div class="slidecontainer">
-  			<div class="slidecontainer">
-  				<h3 id="displayValue2">
+					<br><br>
+
+			<h5>Audiotrack</h5>
+			<h3 id="audioValue"></h3>
   				<span id="hours2">min</span>h
 				<span id="minutes2">hour</span>min
 				<span id="seconds2">second</span>sec
-  				</h3>
+
   					<input type="range" min="0" max="14400" value="0" class="slider"
 		 			oninput="playback2()" onchange="playback2()" id="myRange2">
-			</div>
 		</div>
 
-	<form onsubmit="calculateValue()" name="time" class="form-inline">
-
-  <label class="sr-only" for="inlineFormInputGroup">Username</label>
-  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <div class="input-group-addon"></div>
-	  <input name="movie" id="mytime" type="time" step="1" class="form-control" id="inlineFormInputGroup" />
+<div class="formContainer">
+		<form onsubmit="calculateValue()" name="time" >
+  <div class="form-group">
+     <label>Starting time movie</label> <br>
+	  <small>Timestamp in the movie where you have to start the audiotrack</small>
+    <input name="movie" id="movieStart" type="time" step="1" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Starting time audiotrack</label><br>
+		<small>Timestamp in the audiotrack where the boys said to pause </small>
+    <input name="audio" id="audioStart" type="time" step="1" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Length movie</label> <br>
+		<small>The length of the entire movie </small>
+    <input name="movielength" id="movieLength" type="time" step="1" class="form-control"/>
+  </div>
+  <div class="form-group">
+<label>Length audiotrack</label> <br>
+		<small>The length of the entire audiotrack </small>
+    <input name="audiolength" id="audioLength" type="time" step="1" class="form-control"/>
   </div>
 
-		<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <div class="input-group-addon"></div>
-	  <input name="audio" id="mytime2" type="time" step="1" class="form-control" id="inlineFormInputGroup" />
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
+		 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+ </div>
 
 	</body>
 	<script src="slider.js"></script>
