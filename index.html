@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 			   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		 <link rel="stylesheet" href="stylesheet.css">
 		 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 		<title> DaSynci </title>
 	</head>
 	<body>
@@ -14,55 +16,58 @@
 		</div>
 		<br>
 
-		<div class="sliderContainer">
+		<div id="sliderContainer">
 			<h5>Movie</h5>
 			<h3 id="movieValue"> </h3>
-  				<span id="hours">min</span>h
-				<span id="minutes">hour</span>min
-				<span id="seconds">second</span>sec
+  				<span id="movieHours"></span>h
+				<span id="movieMinutes"></span>min
+				<span id="movieSeconds"></span>sec
 
-  					<input type="range" min="0" max="14400" value="0" class="slider"
-		 			oninput="playback()" onchange="playback()" id="myRange">
+  					<input type="range" min="0" max="10000" value="0" class="slider"
+		 			oninput="playback()" onchange="playback()" id="movieSlider">
 
 					<br><br>
 
 			<h5>Audiotrack</h5>
 			<h3 id="audioValue"></h3>
-  				<span id="hours2">min</span>h
-				<span id="minutes2">hour</span>min
-				<span id="seconds2">second</span>sec
+  				<span id="audioHours"></span>h
+				<span id="audioMinutes"></span>min
+				<span id="audioSeconds"></span>sec
 
-  					<input type="range" min="0" max="14400" value="0" class="slider"
-		 			oninput="playback2()" onchange="playback2()" id="myRange2">
+  					<input type="range" min="0" max="10000" value="0" class="slider"
+		 			oninput="playback2()" onchange="playback2()" id="audioSlider">
 		</div>
 
-<div class="formContainer">
-		<form onsubmit="calculateValue()" name="time" >
-  <div class="form-group">
-     <label>Starting time movie</label> <br>
-	  <small>Timestamp in the movie where you have to start the audiotrack</small>
-    <input name="movie" id="movieStart" type="time" step="1" class="form-control"/>
-  </div>
-  <div class="form-group">
-    <label>Starting time audiotrack</label><br>
-		<small>Timestamp in the audiotrack where the boys said to pause </small>
-    <input name="audio" id="audioStart" type="time" step="1" class="form-control"/>
-  </div>
-  <div class="form-group">
-    <label>Length movie</label> <br>
-		<small>The length of the entire movie </small>
-    <input name="movielength" id="movieLength" type="time" step="1" class="form-control"/>
-  </div>
-  <div class="form-group">
-<label>Length audiotrack</label> <br>
-		<small>The length of the entire audiotrack </small>
-    <input name="audiolength" id="audioLength" type="time" step="1" class="form-control"/>
-  </div>
+		<div id="formContainer">
+			<form id="timeForm" onsubmit="calculateValue()" name="time" >
+				<div class="form-group">
+					<label>Starting time movie</label> <br>
+					<small>Timestamp in the movie where you have to start the audiotrack</small>
+					<input name="movie" value="00:00:00" id="movieStart" type="time" step="1" class="form-control"/>
+				</div>
+				<div class="form-group">
+					<label>Starting time audiotrack</label><br>
+					<small>Timestamp in the audiotrack where the boys said to pause </small>
+					<input name="audio" value="00:00:00" id="audioStart" type="time" step="1" class="form-control"/>
+				</div>
 
-		 <button type="submit" class="btn btn-primary">Submit</button>
-</form>
- </div>
+				<div class="form-group">
+					<label>Length movie</label> <br>
+					<small>The length of the entire movie </small>
+					<input name="movieLength" value="00:00:00" id="movieLength" type="time" step="1" class="form-control"/>
+				</div>
+
+				<div class="form-group">
+					<label>Length audiotrack</label> <br>
+					<small>The length of the entire audiotrack </small>
+					<input name="audioLength" value="00:00:00" id="audioLength" type="time" step="1" class="form-control"/>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+
+			</form>
+ 		</div>
 
 	</body>
-	<script src="slider.js"></script>
+<script src="slider.js"></script>
 </html>

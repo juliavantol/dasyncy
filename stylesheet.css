@@ -1,5 +1,5 @@
-.sliderContainer {
-  width: 100%; /* Width of the outside container */
+#formContainer {
+  width: 60%; /* Width of the outside container */
 }
 
 /* The slider itself */
