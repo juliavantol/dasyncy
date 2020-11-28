@@ -9,8 +9,14 @@ var secOutput2 = document.getElementById("audioSeconds")
 var movieSliderValue = document.getElementById("movieValue")
 var audioSliderValue = document.getElementById("audioValue")
 
+var movieSlider = document.getElementById("movieSlider")
+
+
+
+
 // movie
 function playback(){
+
         var hours = Math.floor(movieSlider.value / 3600);
         var minutes = Math.floor((movieSlider.value % 3600) / 60);
         var seconds = movieSlider.value % 60;
@@ -83,11 +89,15 @@ function calculateValue() {
     inth = parseInt(h, 10)
     intm = parseInt(m, 10)
     ints = parseInt(s, 10)
+
+    // Convert hours to seconds
     a = inth * 3600
+    // Convert minutes to seconds
     b = intm * 60
-    c = a + b + ints
-    sliderContainer.removeAttribute("class", "hide");
-    formContainer.setAttribute("class", "hide");
+    // Total amount of seconds, used to get the max value for the slider
+    maxValue = a + b + ints
+    movieSlider.max = maxValue
+
 
 
 
@@ -97,3 +107,10 @@ $("#timeForm").submit(function(e) {
 
     e.preventDefault();
 });
+
+function maxSlider(){
+
+    movieSlider.max = 3000
+    alert(movieSlider.max);
+
+}
