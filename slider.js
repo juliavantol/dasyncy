@@ -9,10 +9,7 @@ var secOutput2 = document.getElementById("audioSeconds")
 var movieSliderValue = document.getElementById("movieValue")
 var audioSliderValue = document.getElementById("audioValue")
 
-var movieSlider = document.getElementById("movieSlider")
-
-
-
+var difference = 0
 
 // movie
 function playback(){
@@ -27,6 +24,7 @@ function playback(){
 
         // audio
         audioSlider.value = movieSlider.value
+
         hourOutput2.innerHTML = hours;
         minuteOutput2.innerHTML = minutes
         secOutput2.innerHTML = seconds
@@ -59,6 +57,8 @@ function playback2(){
 function calculateValue() {
      // Movie slider
     var movieSlider = document.getElementById("movieSlider");
+    var audioSlider = document.getElementById("audioSlider");
+
     var hourOutput = $("#movieHours")[0];
     var minuteOutput = $("#movieMinutes")[0];
     var secOutput = $("#movieSeconds")[0];
@@ -74,17 +74,45 @@ function calculateValue() {
     var sliderContainer  = document.getElementById("sliderContainer");
     var formContainer = document.getElementById("formContainer");
 
-    var movietime = document.time.movie.value
-    var audiotime = document.time.audio.value
+    var movie = document.time.movie.value
+    var audio = document.time.audio.value
     var movielength = document.time.movieLength.value
     var audiolength = document.time.audioLength.value
 
+    movieMax = calculateLength(movielength)
+    audioMax = calculateLength(audiolength)
+    movieStart = calculateLength(movie)
+    audioStart = calculateLength(audio)
+
+
+    if (movieMax < audioMax) {
+        movieSlider.max = audioMax
+        audioSlider.max = audioMax
+    } else {
+        movieSlider.max = movieMax
+        audioSlider.max = movieMax
+    }
+
+    // Calculate difference
+    if (audioStart > movieStart) {
+        var difference = audioStart - movieStart
+        var msg = "audiofurther"
+
+    } else {
+        var difference = movieStart - audioStart
+        var msg = "moviefurther"
+    }
+
+}
+
+function calculateLength(totalTime){
+
     // Hours
-    var h = movietime[0] + movietime[1]
+    var h = totalTime[0] + totalTime[1]
     // Minutes
-    var m = movietime[3] + movietime[4]
+    var m = totalTime[3] + totalTime[4]
     // Seconds
-    var s = movietime[6] + movietime[7]
+    var s = totalTime[6] + totalTime[7]
 
     inth = parseInt(h, 10)
     intm = parseInt(m, 10)
@@ -96,21 +124,12 @@ function calculateValue() {
     b = intm * 60
     // Total amount of seconds, used to get the max value for the slider
     maxValue = a + b + ints
-    movieSlider.max = maxValue
-
-
-
+    return maxValue;
 
 }
+
 
 $("#timeForm").submit(function(e) {
 
     e.preventDefault();
 });
-
-function maxSlider(){
-
-    movieSlider.max = 3000
-    alert(movieSlider.max);
-
-}
