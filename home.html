@@ -48,7 +48,15 @@
   					<input type="range" min="0" max="10000" value="0" class="slider"
 		 			oninput="playback2()" onchange="playback2()" id="audioSlider">
 
-			<input name="inputAudio" value="00:00:00" id="inputAudio" type="time" step="1" class="form-control"/>
+
+			<form id="audioSpot" onsubmit="moviespot()">
+   				 <div class="form-group">
+					<label>Spot in the audio</label> <br>
+					<small>Or enter a timestamp</small>
+					<input name="audioSpot" value="00:00:00" id="audiospotForm" type="time" step="1" class="form-control"/>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
 
 		</div>
 
