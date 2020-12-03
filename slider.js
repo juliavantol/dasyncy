@@ -15,6 +15,9 @@ var difference = 200
 var movieSlider = document.getElementById("movieSlider");
 var audioSlider = document.getElementById("audioSlider");
 
+var sliderContainer = document.getElementById("sliderContainer");
+var formContainer = document.getElementById("formContainer");
+
 
 
 function calculateValue() {
@@ -27,7 +30,6 @@ function calculateValue() {
     var secOutput = $("#movieSeconds")[0];
 
     // Audio slider
-    var audioSlider = document.getElementById("audioSlider");
     var hourOutput2 = $("#audioHours")[0];
     var minuteOutput2 = $("#audioMinutes")[0];
     var secOutput2 = $("#audioSeconds")[0];
@@ -47,7 +49,6 @@ function calculateValue() {
     var movieStart = calculateLength(movie)
     var audioStart = calculateLength(audio)
 
-
     if (movieMax < audioMax) {
         movieSlider.max = audioMax
         audioSlider.max = audioMax
@@ -61,11 +62,29 @@ function calculateValue() {
 
 function calculateLength(totalTime){
 
+    if (totalTime.length < 8) {
     // Hours
     var h = totalTime[0] + totalTime[1]
-    // Minutes
+    // Minutes < 5
     var m = totalTime[3] + totalTime[4]
-    // Seconds
+
+    inth = parseInt(h, 10)
+    intm = parseInt(m, 10)
+
+    // Convert hours to seconds
+    a = inth * 3600
+    // Convert minutes to seconds
+    b = intm * 60
+    // Total amount of seconds, used to get the max value for the slider
+    maxValue = a + b
+    return maxValue;
+
+    } else {
+    // Hours
+    var h = totalTime[0] + totalTime[1]
+    // Minutes < 5
+    var m = totalTime[3] + totalTime[4]
+    // Seconds < 8
     var s = totalTime[6] + totalTime[7]
 
     inth = parseInt(h, 10)
@@ -79,6 +98,7 @@ function calculateLength(totalTime){
     // Total amount of seconds, used to get the max value for the slider
     maxValue = a + b + ints
     return maxValue;
+    }
 
 }
 
@@ -100,6 +120,7 @@ function calculateDifference(audioStart, movieStart){
 
 // movie
 function playback(){
+
         testing = calculateValue()
         movieStart = testing[0]
         audioStart = testing[1]
@@ -124,10 +145,13 @@ function playback(){
             audioSlider.value = (intvalue - difference)
         }
 
+        var hours2 = Math.floor(audioSlider.value / 3600);
+        var minutes2 = Math.floor((audioSlider.value % 3600) / 60);
+        var seconds2 = audioSlider.value % 60;
 
-        hourOutput2.innerHTML = hours;
-        minuteOutput2.innerHTML = minutes
-        secOutput2.innerHTML = seconds
+        hourOutput2.innerHTML = hours2;
+        minuteOutput2.innerHTML = minutes2
+        secOutput2.innerHTML = seconds2
 
         movieSliderValue.innerHTML = movieSlider.value
         audioSliderValue.innerHTML = audioSlider.value
@@ -160,16 +184,51 @@ function playback2(){
         movieSlider.value = (intvalue2 + difference2)
         }
 
-        hourOutput.innerHTML = hours2;
-        minuteOutput.innerHTML = minutes2
-        secOutput.innerHTML = seconds2
+        var hours = Math.floor(movieSlider.value / 3600);
+        var minutes = Math.floor((movieSlider.value % 3600) / 60);
+        var seconds = movieSlider.value % 60;
+
+        hourOutput.innerHTML = hours;
+        minuteOutput.innerHTML = minutes
+        secOutput.innerHTML = seconds
 
         movieSliderValue.innerHTML = movieSlider.value
         audioSliderValue.innerHTML = audioSlider.value
 
 }
 
-$("#timeForm").submit(function(e) {
+// Get the input field
+var input = document.getElementById("inputAudio");
 
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    alert("uolo")
+  }
+});
+
+
+$("#timeForm").submit(function(e) {
+    formContainer.classList.add("hide");
+    sliderContainer.classList.remove("hide");
     e.preventDefault();
 });
+
+function goBack() {
+    formContainer.classList.remove("hide");
+    sliderContainer.classList.add("hide");
+    location.reload();
+
+}
+
+
+
+
+
+
+// Get the input field
+var input2 = document.getElementById("inputMovie");
+
+

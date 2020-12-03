@@ -16,7 +16,8 @@
 		</div>
 		<br>
 
-		<div id="sliderContainer">
+		<div id="sliderContainer" class="hide">
+			<button onclick="goBack()">Go back</button>
 			<h5>Movie</h5>
 			<h3 id="movieValue"> </h3>
   				<span id="movieHours"></span>h
@@ -25,6 +26,16 @@
 
   					<input type="range" min="0" max="10000" value="0" class="slider"
 		 			oninput="playback()" onchange="playback()" id="movieSlider">
+
+
+			<form id="movieSpot" onsubmit="moviespot()">
+   				 <div class="form-group">
+					<label>Spot in the movie</label> <br>
+					<small>Or enter a timestamp</small>
+					<input name="movieSpot" value="00:00:00" id="moviespotForm" type="time" step="1" class="form-control"/>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
 
 					<br><br>
 
@@ -36,6 +47,9 @@
 
   					<input type="range" min="0" max="10000" value="0" class="slider"
 		 			oninput="playback2()" onchange="playback2()" id="audioSlider">
+
+			<input name="inputAudio" value="00:00:00" id="inputAudio" type="time" step="1" class="form-control"/>
+
 		</div>
 
 		<div id="formContainer">
@@ -70,4 +84,6 @@
 
 	</body>
 <script src="slider.js"></script>
+<script src="timestamp.js"></script>
+
 </html>
