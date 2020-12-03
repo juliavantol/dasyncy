@@ -1,10 +1,8 @@
 function moviespot() {
     // Get time
     var movieTime = document.getElementById("moviespotForm").value;
-    var audioTime = document.getElementById("audiospotForm").value;
 
     var movieSum = calculateLength(movieTime)
-    var audioSum = calculateLength(audioTime)
 
     // Change spot in slider
     var movieSlider = document.getElementById("movieSlider");
@@ -25,6 +23,36 @@ function moviespot() {
        audioSlider.value = (movieSum + difference)
     } else {
        audioSlider.value = (movieSum - difference)
+    }
+
+
+}
+
+function audiospot() {
+    // Get time
+    var audioTime = document.getElementById("audiospotForm").value;
+
+    var audioSum = calculateLength(audioTime)
+
+    // Change spot in slider
+    var movieSlider = document.getElementById("movieSlider");
+    var audioSlider = document.getElementById("audioSlider");
+
+    var values = calculateValue()
+    movieStart = values[0]
+    audioStart = values[1]
+
+    var values2 = calculateDifference(audioStart, movieStart)
+    var difference = values2[0]
+    var msg = values2[1]
+    console.log(difference);
+
+    audioSlider.value = audioSum
+    // audiosync
+    if (msg == "audiofurther") {
+       movieSlider.value = (audioSum - difference)
+    } else {
+       movieSlider.value = (audioSum + difference)
     }
 
 

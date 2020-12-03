@@ -184,6 +184,8 @@ function playback2(){
         movieSlider.value = (intvalue2 + difference2)
         }
 
+
+
         var hours = Math.floor(movieSlider.value / 3600);
         var minutes = Math.floor((movieSlider.value % 3600) / 60);
         var seconds = movieSlider.value % 60;
