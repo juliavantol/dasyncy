@@ -2,6 +2,7 @@ var hourOutput = document.getElementById("movieHours")
 var minuteOutput = document.getElementById("movieMinutes")
 var secOutput = document.getElementById("movieSeconds")
 
+
 var hourOutput2 = document.getElementById("audioHours")
 var minuteOutput2 = document.getElementById("audioMinutes")
 var secOutput2 = document.getElementById("audioSeconds")
@@ -203,8 +204,6 @@ function playback2(){
 var input = document.getElementById("inputAudio");
 
 
-
-
 $("#timeForm").submit(function(e) {
     formContainer.classList.add("hide");
     sliderContainer.classList.remove("hide");
@@ -217,11 +216,6 @@ function goBack() {
     location.reload();
 
 }
-
-
-
-
-
 
 // Get the input field
 var input2 = document.getElementById("inputMovie");
