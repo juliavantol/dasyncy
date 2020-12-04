@@ -15,7 +15,7 @@ function moviespot() {
     var movieSlider = document.getElementById("movieSlider");
     var audioSlider = document.getElementById("audioSlider");
 
-    var values = calculateValue()
+    var values = timeForm()
     movieStart = values[0]
     audioStart = values[1]
 
@@ -44,7 +44,7 @@ function audiospot() {
     var movieSlider = document.getElementById("movieSlider");
     var audioSlider = document.getElementById("audioSlider");
 
-    var values = calculateValue()
+    var values = timeForm()
     movieStart = values[0]
     audioStart = values[1]
 
@@ -146,7 +146,7 @@ function calculateTime(sliderValue) {
 // With this function you calculate both values of the sliders
 function calculateSlider(sliderValue, slider) {
 
-        testing = calculateValue()
+        testing = timeForm()
         movieStart = testing[0]
         audioStart = testing[1]
         // Get slider values
