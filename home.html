@@ -19,13 +19,12 @@
 		<div id="sliderContainer" class="hide">
 			<button onclick="goBack()">Go back</button>
 			<h5>Movie</h5>
-			<h3 id="movieValue"> </h3>
   				<span id="movieHours"></span>h
 				<span id="movieMinutes"></span>min
 				<span id="movieSeconds"></span>sec
 
   					<input type="range" min="0" max="10000" value="0" class="slider"
-		 			oninput="changeMovieSlider()" onchange="changeMovieSlider()" id="movieSlider">
+		 			oninput="movieSlider()" onchange="movieSlider()" id="movieSlider">
 
 
 			<form id="movieSpot" onsubmit="moviespot()">
@@ -40,13 +39,12 @@
 					<br><br>
 
 			<h5>Audiotrack</h5>
-			<h3 id="audioValue"></h3>
   				<span id="audioHours"></span>h
 				<span id="audioMinutes"></span>min
 				<span id="audioSeconds"></span>sec
 
   					<input type="range" min="0" max="10000" value="0" class="slider"
-		 			oninput="changeAudioSlider()" onchange="changeAudioSlider()" id="audioSlider">
+		 			oninput="audioSlider()" onchange="audioSlider()" id="audioSlider">
 
 
 			<form id="audioSpot" onsubmit="audiospot()">
