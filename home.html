@@ -15,6 +15,7 @@
 		DaSynci
 		</div>
 		<br>
+		<button onclick="test()">Click me</button>
 
 		<div id="sliderContainer" class="hide">
 			<button onclick="goBack()">Go back</button>
@@ -61,14 +62,19 @@
 		<div id="formContainer">
 			<form id="timeForm" onsubmit="timeForm()" name="time" >
 				<div class="form-group">
+					<label>Movie title</label> <br>
+					<small>Give the slider a name, like the movie's title or sum</small>
+					<input name="title"  id="title" type="text" class="form-control"/>
+				</div>
+				<div class="form-group">
 					<label>Starting time movie</label> <br>
 					<small>Timestamp in the movie where you have to start the audiotrack</small>
-					<input name="movie" value="00:00:00" id="movieStart" type="time" step="1" class="form-control"/>
+					<input name="movieStart" value="00:00:00" id="movieStart" type="time" step="1" class="form-control"/>
 				</div>
 				<div class="form-group">
 					<label>Starting time audiotrack</label><br>
 					<small>Timestamp in the audiotrack where the boys said to pause </small>
-					<input name="audio" value="00:00:00" id="audioStart" type="time" step="1" class="form-control"/>
+					<input name="audioStart" value="00:00:00" id="audioStart" type="time" step="1" class="form-control"/>
 				</div>
 
 				<div class="form-group">
@@ -89,7 +95,9 @@
  		</div>
 
 	</body>
+
+	<script src="timeform.js"></script>
 <script src="slider.js"></script>
-<script src="timestamp.js"></script>
+
 
 </html>

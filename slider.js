@@ -1,42 +1,206 @@
-var movieSlider = document.getElementById("movieSlider");
-var audioSlider = document.getElementById("audioSlider");
-var sliderContainer = document.getElementById("sliderContainer");
-var formContainer = document.getElementById("formContainer");
+var mHr = document.getElementById("movieHours")
+var mMin = document.getElementById("movieMinutes")
+var mSec = document.getElementById("movieSeconds")
 
-// Handles the form with all the time data
-// Sets the max values of the sliders
-function timeForm() {
-    var movie = document.time.movie.value
-    var audio = document.time.audio.value
-    var movielength = document.time.movieLength.value
-    var audiolength = document.time.audioLength.value
+var aHr = document.getElementById("audioHours")
+var aMin = document.getElementById("audioMinutes")
+var aSec = document.getElementById("audioSeconds")
 
-    // Convert input to seconds
-    var movieMax = convertToSeconds(movielength)
-    var audioMax = convertToSeconds(audiolength)
-    var movieStart = convertToSeconds(movie)
-    var audioStart = convertToSeconds(audio)
+function movieSlider() {
 
-    if (movieMax < audioMax) {
-        movieSlider.max = audioMax
-        audioSlider.max = audioMax
-    } else {
-        movieSlider.max = movieMax
-        audioSlider.max = movieMax
-    }
+    var movieSlider = document.getElementById("movieSlider");
+    movieValue = movieSlider.value
+    var slider = "movie"
 
-    return [movieStart, audioStart]
+    bothSliders(movieValue, slider)
 }
 
-$("#timeForm").submit(function(e) {
-    formContainer.classList.add("hide");
-    sliderContainer.classList.remove("hide");
+function audioSlider() {
+
+    var audioSlider = document.getElementById("audioSlider");
+    audioValue = audioSlider.value
+    var slider = "audio"
+
+    bothSliders(audioValue, slider)
+}
+
+function bothSliders(value, slider) {
+
+    // Calculate new value
+    newValues = calculateSlider(value, slider)
+    newMovie = newValues[0]
+    newAudio = newValues[1]
+
+    changeSlider(newMovie, newAudio)
+
+}
+
+// With this function you calculate both values of the sliders
+function calculateSlider(sliderValue, slider) {
+
+        startValues = timeForm()
+        movieStart = startValues[0]
+        audioStart = startValues[1]
+
+        // Calculate the difference
+        var values = calculateDifference(audioStart, movieStart)
+        var difference = values[0]
+        var msg = values[1]
+
+        intvalue = parseInt(sliderValue, 10)
+
+        // Sync up with difference
+        if (slider == "movie") {
+            // audiosync
+            var movieValue = intvalue
+            if (msg == "audiofurther") {
+                audioValue = (intvalue + difference)
+            } else {
+                audioValue = (intvalue - difference)
+            }
+
+        } else if (slider == "audio") {
+            // moviesync
+            var audioValue = intvalue
+            if (msg == "audiofurther") {
+                movieValue = (intvalue - difference)
+            } else {
+                movieValue = (intvalue + difference)
+            }
+
+        }
+
+        return [movieValue, audioValue];
+}
+
+function calculateDifference(audioStart, movieStart){
+
+     // Calculate difference
+    if (audioStart > movieStart) {
+        var difference = audioStart - movieStart
+        var msg = "audiofurther"
+
+    } else {
+        var difference = movieStart - audioStart
+        var msg = "moviefurther"
+    }
+    return [difference, msg];
+
+}
+
+function convertToSeconds(totalTime){
+
+    var h = totalTime[0] + totalTime[1]
+    var m = totalTime[3] + totalTime[4]
+    var ints = 0
+
+    if (totalTime.length > 5) {
+        var s = totalTime[6] + totalTime[7]
+        ints = parseInt(s, 10)
+    }
+
+    inth = parseInt(h, 10)
+    intm = parseInt(m, 10)
+
+    // Convert hours to seconds
+    a = inth * 3600
+    // Convert minutes to seconds
+    b = intm * 60
+    // Total amount of seconds
+    total = a + b + ints
+    return total;
+}
+
+function changeSlider(newMovie, newAudio) {
+    // Get the sliders
+    var movieSlider = document.getElementById("movieSlider");
+    var audioSlider = document.getElementById("audioSlider");
+
+    movieSlider.max = localStorage.getItem("movieMax");
+    audioSlider.max = localStorage.getItem("audioMax");
+
+    // Set the slider values
+    movieSlider.value = newMovie
+    audioSlider.value = newAudio
+
+    console.log(title.value)
+    // Set the time
+    movieTimes = calculateTime(newMovie, mHr, mMin, mSec)
+    audioTimes = calculateTime(newAudio, aHr, aMin, aSec)
+}
+
+// Function to calculate the time output
+function calculateTime(sliderValue, h, m, s) {
+     // Calculate time
+     var hours = Math.floor(sliderValue / 3600);
+     var minutes = Math.floor((sliderValue % 3600) / 60);
+     var seconds = sliderValue % 60;
+
+     h.innerHTML = hours;
+     m.innerHTML = minutes;
+     s.innerHTML = seconds;
+
+     return [hours, minutes, seconds]
+
+}
+
+function moviespot() {
+    // Get time
+    var movieTime = document.getElementById("moviespotForm").value;
+    var slider = "movie"
+
+    value = convertToSeconds(movieTime)
+    // Calculate new value
+    newValues = calculateSlider(value, slider)
+    newMovie = newValues[0]
+    newAudio = newValues[1]
+
+    changeSlider(newMovie, newAudio)
+}
+
+function audiospot() {
+    // Get time
+    var audioTime = document.getElementById("audiospotForm").value;
+    var slider = "audio"
+
+    value = convertToSeconds(audioTime)
+    // Calculate new value
+    newValues = calculateSlider(value, slider)
+    newMovie = newValues[0]
+    newAudio = newValues[1]
+
+    changeSlider(newMovie, newAudio)
+}
+
+$("#movieSpot").submit(function(e) {
     e.preventDefault();
 });
 
-function goBack() {
-    formContainer.classList.remove("hide");
-    sliderContainer.classList.add("hide");
-    location.reload();
+$("#audioSpot").submit(function(e) {
+    e.preventDefault();
+});
+
+// Handle LocalStorage
+function saveSlider(movieValue, audioValue, difference, max) {
+
+localStorage.setItem("movieMax", movieMax);
+localStorage.setItem("audioMax", audioMax);
+localStorage.setItem("difference", difference);
+
+    // Dict to save a slider
+    var slider = {
+        "movieValue": movieValue,
+        "audioValue": audioValue,
+        "difference": difference,
+        "max": max
+    }
+
+}
+
+function test() {
+    var mmax = localStorage.getItem("movieMax");
+    var amax = localStorage.getItem("audioMax");
+    console.log(mmax);
+    console.log(amax);
 
 }
