@@ -28,30 +28,26 @@ function timeForm() {
     }
 
     // Check if the dict already exists
-    var ifEmpty = JSON.parse(window.localStorage.getItem("sliders"));
-    if (ifEmpty == null) {
-        console.log("empty")
+    var sliders = JSON.parse(window.localStorage.getItem("sliders"));
+    if (sliders == null) {
         // dict with all the sliders and their names
-        var sliders = {}
-        sliders[1] = "this is one"
-        sliders[2] = "this is two"
+        var new_sliders = {}
+        new_sliders[1] = "this is one"
+        new_sliders[2] = "this is two"
         // store the dict of sliders in local storage
-        window.localStorage.setItem("sliders", JSON.stringify(sliders));
+        window.localStorage.setItem("sliders", JSON.stringify(new_sliders));
 
     } else {
-        console.log("already exists i guess")
-
         // check length of the dict
-        lengthSliders = Object.keys(ifEmpty).length
-        ifEmpty[(lengthSliders + 1)] = "this is another one"
+        lengthSliders = Object.keys(sliders).length
+        sliders[(lengthSliders + 1)] = "this is another one"
         // store the dict of sliders in local storage
-        window.localStorage.setItem("sliders", JSON.stringify(ifEmpty));
+        window.localStorage.setItem("sliders", JSON.stringify(sliders));
 
     }
 
     // this retrieves a dict of all the sliders
     var testing = JSON.parse(window.localStorage.getItem("sliders"));
-
     console.log(testing)
 
     return [movieStart, audioStart]
