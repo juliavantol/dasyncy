@@ -27,29 +27,6 @@ function timeForm() {
         localStorage.setItem("audioMax", movieMax);
     }
 
-    // Check if the dict already exists
-    var sliders = JSON.parse(window.localStorage.getItem("sliders"));
-    if (sliders == null) {
-        // dict with all the sliders and their names
-        var new_sliders = {}
-        new_sliders[1] = "this is one"
-        new_sliders[2] = "this is two"
-        // store the dict of sliders in local storage
-        window.localStorage.setItem("sliders", JSON.stringify(new_sliders));
-
-    } else {
-        // check length of the dict
-        lengthSliders = Object.keys(sliders).length
-        sliders[(lengthSliders + 1)] = "this is another one"
-        // store the dict of sliders in local storage
-        window.localStorage.setItem("sliders", JSON.stringify(sliders));
-
-    }
-
-    // this retrieves a dict of all the sliders
-    var testing = JSON.parse(window.localStorage.getItem("sliders"));
-    console.log(testing)
-
     return [movieStart, audioStart]
 }
 
@@ -57,6 +34,9 @@ $("#timeForm").submit(function(e) {
     formContainer.classList.add("hide");
     sliderContainer.classList.remove("hide");
     e.preventDefault();
+
+    //window.location.href="sliders.html";
+
 });
 
 function goBack() {

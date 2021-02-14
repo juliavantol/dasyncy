@@ -123,7 +123,6 @@ function changeSlider(newMovie, newAudio) {
     movieSlider.value = newMovie
     audioSlider.value = newAudio
 
-    console.log(title.value)
     // Set the time
     movieTimes = calculateTime(newMovie, mHr, mMin, mSec)
     audioTimes = calculateTime(newAudio, aHr, aMin, aSec)
@@ -181,26 +180,83 @@ $("#audioSpot").submit(function(e) {
 });
 
 // Handle LocalStorage
-function saveSlider(movieValue, audioValue, difference, max) {
+function saveSlider() {
 
-localStorage.setItem("movieMax", movieMax);
-localStorage.setItem("audioMax", audioMax);
-localStorage.setItem("difference", difference);
+    var movieSlider = document.getElementById("movieSlider");
+    var audioSlider = document.getElementById("audioSlider");
+    var difference = calculateDifference(audioSlider.value, movieSlider.value)
+    var max = localStorage.getItem("movieMax");
 
     // Dict to save a slider
     var slider = {
-        "movieValue": movieValue,
-        "audioValue": audioValue,
-        "difference": difference,
+        "movieValue": movieSlider.value,
+        "audioValue": audioSlider.value,
+        "difference": difference[0],
         "max": max
+    }
+    // log single new slider
+    console.log(slider);
+
+    // Check if the dict already exists
+    var sliders = JSON.parse(window.localStorage.getItem("sliders"));
+    if (sliders == null) {
+        // dict with all the sliders and their names
+        var new_sliders = {}
+        new_sliders[title.value] = slider
+        // store the dict of sliders in local storage
+        window.localStorage.setItem("sliders", JSON.stringify(new_sliders));
+
+    } else {
+        // check length of the dict
+        lengthSliders = Object.keys(sliders).length
+        sliders[title.value] = slider
+        // store the dict of sliders in local storage
+        window.localStorage.setItem("sliders", JSON.stringify(sliders));
+
+    }
+
+    // this retrieves a dict of all the sliders
+    var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
+    // delete slidersDict["finding nemo"]
+
+    // log dict with all the dicts
+    console.log(slidersDict);
+
+    // DELETE OR ACCESS ENTRY
+    // delete slidersDict["Finding Nemo"]
+
+}
+
+function showSliders() {
+    // Show all the saved sliders in the navigation bar
+    // this retrieves a dict of all the sliders
+    var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
+    var prop;
+    for (prop in slidersDict) {
+        var p = document.createElement("p");
+        var text = document.createTextNode(prop);
+        p.appendChild(text);
+        var element = document.getElementById("sideNav");
+        element.appendChild(p);
     }
 
 }
 
-function test() {
-    var mmax = localStorage.getItem("movieMax");
-    var amax = localStorage.getItem("audioMax");
-    console.log(mmax);
-    console.log(amax);
+window.onload = showSliders;
 
+function test() {
+    var movieSlider = document.getElementById("movieSlider");
+    var audioSlider = document.getElementById("audioSlider");
+    var difference = calculateDifference(audioSlider.value, movieSlider.value)
+    var max = localStorage.getItem("movieMax");
+
+    // Dict to save a slider
+    var slider = {
+        "movieValue": movieSlider.value,
+        "audioValue": audioSlider.value,
+        "difference": difference[1],
+        "max": max
+    }
+
+    console.log(slider);
 }
