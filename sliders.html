@@ -17,23 +17,18 @@
 		<div class="header">
 		DaSynci
 		</div>
+ 	<a href="home.html">Home</a>
 
-		slider page
-
-        <div id="testNav">
-
-		</div>
         <br>
-        <br>
+
         <div id="sideNav">
 			Saved sliders
 		</div>
 
-        <a href="home.html">Home</a>
+		<br>
 
     <div id="sliderContainer">
 			<button onclick="saveSlider()">Save the slider</button>
-			<button onclick="goBack()">Go back</button>
 			<h5>Movie</h5>
   				<span id="movieHours"></span>h
 				<span id="movieMinutes"></span>min
@@ -79,27 +74,6 @@
 	<script src="timeform.js"></script>
 <script src="slider.js"></script>
 
-<script>
 
-    document.addEventListener("DOMContentLoaded", function() {
-
-var mstart = localStorage.getItem("movieStart");
-var astart = localStorage.getItem("audioStart");
-var max = localStorage.getItem("movieMax");
-var p = document.createElement("p");
-
-var text1 = document.createTextNode(mstart);
-var text2 = document.createTextNode(astart);
-var text3 = document.createTextNode(max);
-
-p.appendChild(text1);
-p.appendChild(text2);
-p.appendChild(text3);
-
-var element = document.getElementById("testNav");
-element.appendChild(p);
-});
-
-</script>
 
 </html>

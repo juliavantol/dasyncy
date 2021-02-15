@@ -38,8 +38,6 @@ function bothSliders(value, slider) {
 // With this function you calculate both values of the sliders
 function calculateSlider(sliderValue, slider) {
 
-
-
         movieStart = localStorage.getItem("movieStart");
         audioStart = localStorage.getItem("audioStart");
 
@@ -195,22 +193,22 @@ function saveSlider() {
         "difference": difference[0],
         "max": max
     }
-    // log single new slider
-    console.log(slider);
+
+    var title = localStorage.getItem("title");
 
     // Check if the dict already exists
     var sliders = JSON.parse(window.localStorage.getItem("sliders"));
     if (sliders == null) {
         // dict with all the sliders and their names
         var new_sliders = {}
-        new_sliders[title.value] = slider
+        new_sliders[title] = slider
         // store the dict of sliders in local storage
         window.localStorage.setItem("sliders", JSON.stringify(new_sliders));
 
     } else {
         // check length of the dict
         lengthSliders = Object.keys(sliders).length
-        sliders[title.value] = slider
+        sliders[title] = slider
         // store the dict of sliders in local storage
         window.localStorage.setItem("sliders", JSON.stringify(sliders));
 
@@ -221,7 +219,7 @@ function saveSlider() {
     // delete slidersDict["finding nemo"]
 
     // log dict with all the dicts
-    console.log(slidersDict);
+    showSliders()
 
     // DELETE OR ACCESS ENTRY
     // delete slidersDict["Finding Nemo"]
@@ -231,6 +229,7 @@ function saveSlider() {
 function showSliders() {
     // Show all the saved sliders in the navigation bar
     // this retrieves a dict of all the sliders
+    document.getElementById("sideNav").innerHTML = "";
     var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
     var prop;
     for (prop in slidersDict) {

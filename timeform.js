@@ -8,6 +8,8 @@ var formContainer = document.getElementById("formContainer");
 function timeForm() {
     var movieStart = document.time.movieStart.value
     var audioStart = document.time.audioStart.value
+    var title = document.getElementById("title").value;
+    localStorage.setItem("title", title);
 
     // Convert input to seconds
     var movieMax = convertToSeconds(movieLength.value)
@@ -31,13 +33,4 @@ function timeForm() {
 
 
     return [movieStart, audioStart]
-}
-
-
-
-function goBack() {
-    formContainer.classList.remove("hide");
-    sliderContainer.classList.add("hide");
-    location.reload();
-
 }
