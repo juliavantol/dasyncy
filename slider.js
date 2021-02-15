@@ -191,6 +191,7 @@ function saveSlider() {
         "movieValue": movieSlider.value,
         "audioValue": audioSlider.value,
         "difference": difference[0],
+        "position": difference[1],
         "max": max
     }
 
@@ -245,7 +246,7 @@ function showSliders() {
         var span = document.createElement('span');
 
         //span.innerHTML =  "<button type='button' onclick='tip(" + "{stripped}" + ")'> hey" + "</button>"
-        span.innerHTML = '<button type="button" onclick="tip(' + "'"+ stripped + "'" + ')">' + prop + '</button>'
+        span.innerHTML = '<button type="button" onclick="loadSlider(' + "'"+ prop + "'" + ')">' + prop + '</button>'
         var element = document.getElementById("sideNav");
         element.appendChild(span);
 
@@ -253,18 +254,16 @@ function showSliders() {
 
 }
 
-function popup(title) {
-    alert(title)
-}
 
 
-function tip(tip_value)
+function loadSlider(title)
 {
+    // this retrieves a dict of all the sliders
+    var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
+    var current = slidersDict[title]
+    console.log(current)
 
-  alert(tip_value)
 }
-
-
 
 window.onload = showSliders;
 
