@@ -38,9 +38,10 @@ function bothSliders(value, slider) {
 // With this function you calculate both values of the sliders
 function calculateSlider(sliderValue, slider) {
 
-        startValues = timeForm()
-        movieStart = startValues[0]
-        audioStart = startValues[1]
+
+
+        movieStart = localStorage.getItem("movieStart");
+        audioStart = localStorage.getItem("audioStart");
 
         // Calculate the difference
         var values = calculateDifference(audioStart, movieStart)
@@ -241,6 +242,8 @@ function showSliders() {
     }
 
 }
+
+
 
 window.onload = showSliders;
 

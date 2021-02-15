@@ -14,6 +14,8 @@ function timeForm() {
     var audioMax = convertToSeconds(audioLength.value)
     var movieStart = convertToSeconds(movieStart)
     var audioStart = convertToSeconds(audioStart)
+    localStorage.setItem("movieStart", movieStart);
+    localStorage.setItem("audioStart", audioStart);
 
     if (movieMax < audioMax) {
         movieSlider.max = audioMax
@@ -27,17 +29,11 @@ function timeForm() {
         localStorage.setItem("audioMax", movieMax);
     }
 
+
     return [movieStart, audioStart]
 }
 
-$("#timeForm").submit(function(e) {
-    formContainer.classList.add("hide");
-    sliderContainer.classList.remove("hide");
-    e.preventDefault();
 
-    //window.location.href="sliders.html";
-
-});
 
 function goBack() {
     formContainer.classList.remove("hide");
