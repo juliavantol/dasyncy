@@ -234,14 +234,7 @@ function showSliders() {
     var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
     var prop;
     for (prop in slidersDict) {
-//        var b = document.createElement("b");
-//        var text = document.createTextNode(prop);
-//        b.appendChild(text);
-//        b.title = prop
-//        b.id = "savedslider"
-//        b.onclick = "popup()"
-//        var element = document.getElementById("sideNav");
-//        element.appendChild(b);
+
         var stripped = prop.split(" ").join("")
         var span = document.createElement('span');
 
@@ -260,26 +253,24 @@ function loadSlider(title)
 {
     // this retrieves a dict of all the sliders
     var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
-    var current = slidersDict[title]
-    console.log(current)
+    var slider = slidersDict[title]
+//    console.log(slider.movieValue)
+//    console.log(slider.audioValue)
+//    console.log(slider.difference)
+//    console.log(slider.position)
+//    console.log(slider.max)
+
+    var movieSlider = document.getElementById("movieSlider");
+    var audioSlider = document.getElementById("audioSlider");
+
+    localStorage.setItem("movieMax", slider.max);
+    localStorage.setItem("audioMax", slider.max);
+
+    localStorage.setItem("movieStart", slider.movieValue);
+    localStorage.setItem("audioStart", slider.audioValue);
+
+    window.location.href = "sliders.html";
 
 }
 
 window.onload = showSliders;
-
-function test() {
-    var movieSlider = document.getElementById("movieSlider");
-    var audioSlider = document.getElementById("audioSlider");
-    var difference = calculateDifference(audioSlider.value, movieSlider.value)
-    var max = localStorage.getItem("movieMax");
-
-    // Dict to save a slider
-    var slider = {
-        "movieValue": movieSlider.value,
-        "audioValue": audioSlider.value,
-        "difference": difference[1],
-        "max": max
-    }
-
-    console.log(slider);
-}
