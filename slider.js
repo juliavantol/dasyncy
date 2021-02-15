@@ -233,13 +233,35 @@ function showSliders() {
     var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
     var prop;
     for (prop in slidersDict) {
-        var p = document.createElement("p");
-        var text = document.createTextNode(prop);
-        p.appendChild(text);
+//        var b = document.createElement("b");
+//        var text = document.createTextNode(prop);
+//        b.appendChild(text);
+//        b.title = prop
+//        b.id = "savedslider"
+//        b.onclick = "popup()"
+//        var element = document.getElementById("sideNav");
+//        element.appendChild(b);
+        var stripped = prop.split(" ").join("")
+        var span = document.createElement('span');
+
+        //span.innerHTML =  "<button type='button' onclick='tip(" + "{stripped}" + ")'> hey" + "</button>"
+        span.innerHTML = '<button type="button" onclick="tip(' + "'"+ stripped + "'" + ')">' + prop + '</button>'
         var element = document.getElementById("sideNav");
-        element.appendChild(p);
+        element.appendChild(span);
+
     }
 
+}
+
+function popup(title) {
+    alert(title)
+}
+
+
+function tip(tip_value)
+{
+
+  alert(tip_value)
 }
 
 
