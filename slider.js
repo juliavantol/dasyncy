@@ -11,8 +11,14 @@ function movieSlider() {
     var movieSlider = document.getElementById("movieSlider");
     movieValue = movieSlider.value
     var slider = "movie"
-
     bothSliders(movieValue, slider)
+
+    var huh = localStorage.getItem("movieStart");
+
+    console.log("Value: ", movieSlider.value)
+    console.log("current max:", movieSlider.max)
+
+
 }
 
 function audioSlider() {
@@ -20,7 +26,6 @@ function audioSlider() {
     var audioSlider = document.getElementById("audioSlider");
     audioValue = audioSlider.value
     var slider = "audio"
-
     bothSliders(audioValue, slider)
 }
 
@@ -38,6 +43,7 @@ function bothSliders(value, slider) {
 // With this function you calculate both values of the sliders
 function calculateSlider(sliderValue, slider) {
 
+        // THE PROBLEMS HERE //
         movieStart = localStorage.getItem("movieStart");
         audioStart = localStorage.getItem("audioStart");
 
@@ -247,6 +253,29 @@ function showSliders() {
 
 }
 
+function pageload() {
+
+    var movieSlider = document.getElementById("movieSlider");
+    var audioSlider = document.getElementById("audioSlider");
+    console.log("value on load:", movieSlider.value)
+
+    var max = localStorage.getItem("movieMax");
+    var max2 = localStorage.getItem("audioMax");
+    movieSlider.max = max
+    audioSlider.max = max2
+
+    console.log("max on load:", movieSlider.max)
+
+    var v = localStorage.getItem("mvalue");
+
+
+    movieSlider.value = v;
+
+    var audioSlider = document.getElementById("audioSlider");
+    var z = localStorage.getItem("avalue");
+    audioSlider.value = z;
+
+}
 
 
 function loadSlider(title)
@@ -269,8 +298,17 @@ function loadSlider(title)
     localStorage.setItem("movieStart", slider.movieValue);
     localStorage.setItem("audioStart", slider.audioValue);
 
+    localStorage.setItem("mvalue", slider.movieValue);
+    localStorage.setItem("avalue", slider.audioValue);
+
     window.location.href = "sliders.html";
 
 }
 
-window.onload = showSliders;
+function start() {
+
+    showSliders()
+    pageload()
+
+}
+

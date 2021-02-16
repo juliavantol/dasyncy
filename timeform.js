@@ -14,10 +14,14 @@ function timeForm() {
     // Convert input to seconds
     var movieMax = convertToSeconds(movieLength.value)
     var audioMax = convertToSeconds(audioLength.value)
-    var movieStart = convertToSeconds(movieStart)
-    var audioStart = convertToSeconds(audioStart)
-    localStorage.setItem("movieStart", movieStart);
-    localStorage.setItem("audioStart", audioStart);
+    var movieStart2 = convertToSeconds(movieStart)
+    var audioStart2 = convertToSeconds(audioStart)
+
+    // problematic
+    localStorage.setItem("movieStart", movieStart2);
+    localStorage.setItem("audioStart", audioStart2);
+
+
 
     if (movieMax < audioMax) {
         movieSlider.max = audioMax
@@ -32,5 +36,5 @@ function timeForm() {
     }
 
 
-    return [movieStart, audioStart]
+    return [movieStart2, audioStart2]
 }

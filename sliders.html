@@ -13,7 +13,7 @@
 
 		<title> DaSynci </title>
 	</head>
-	<body>
+	<body onload="start()">
 		<div class="header">
 		DaSynci
 		</div>
@@ -33,7 +33,7 @@
 				<span id="movieMinutes"></span>min
 				<span id="movieSeconds"></span>sec
 
-  					<input type="range" min="0" max="10000" value="0" class="slider"
+  					<input type="range" min="0" max="3600" value="0" class="slider"
 		 			oninput="movieSlider()" onchange="movieSlider()" id="movieSlider">
 
 
@@ -53,7 +53,7 @@
 				<span id="audioMinutes"></span>min
 				<span id="audioSeconds"></span>sec
 
-  					<input type="range" min="0" max="10000" value="0" class="slider"
+  					<input type="range" min="0" max="3600" value="0" class="slider"
 		 			oninput="audioSlider()" onchange="audioSlider()" id="audioSlider">
 
 
