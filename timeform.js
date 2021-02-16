@@ -21,6 +21,9 @@ function timeForm() {
     localStorage.setItem("movieStart", movieStart2);
     localStorage.setItem("audioStart", audioStart2);
 
+    movieSlider.value = 0;
+    audioSlider.value = 0;
+
 
 
     if (movieMax < audioMax) {

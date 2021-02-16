@@ -13,12 +13,6 @@ function movieSlider() {
     var slider = "movie"
     bothSliders(movieValue, slider)
 
-    var huh = localStorage.getItem("movieStart");
-
-    console.log("Value: ", movieSlider.value)
-    console.log("current max:", movieSlider.max)
-
-
 }
 
 function audioSlider() {
@@ -27,6 +21,7 @@ function audioSlider() {
     audioValue = audioSlider.value
     var slider = "audio"
     bothSliders(audioValue, slider)
+
 }
 
 function bothSliders(value, slider) {
@@ -43,7 +38,6 @@ function bothSliders(value, slider) {
 // With this function you calculate both values of the sliders
 function calculateSlider(sliderValue, slider) {
 
-        // THE PROBLEMS HERE //
         movieStart = localStorage.getItem("movieStart");
         audioStart = localStorage.getItem("audioStart");
 
@@ -147,6 +141,8 @@ function calculateTime(sliderValue, h, m, s) {
      return [hours, minutes, seconds]
 
 }
+
+
 
 function moviespot() {
     // Get time
@@ -257,23 +253,13 @@ function pageload() {
 
     var movieSlider = document.getElementById("movieSlider");
     var audioSlider = document.getElementById("audioSlider");
-    console.log("value on load:", movieSlider.value)
 
     var max = localStorage.getItem("movieMax");
     var max2 = localStorage.getItem("audioMax");
+
     movieSlider.max = max
     audioSlider.max = max2
 
-    console.log("max on load:", movieSlider.max)
-
-    var v = localStorage.getItem("mvalue");
-
-
-    movieSlider.value = v;
-
-    var audioSlider = document.getElementById("audioSlider");
-    var z = localStorage.getItem("avalue");
-    audioSlider.value = z;
 
 }
 
@@ -283,14 +269,20 @@ function loadSlider(title)
     // this retrieves a dict of all the sliders
     var slidersDict = JSON.parse(window.localStorage.getItem("sliders"));
     var slider = slidersDict[title]
-//    console.log(slider.movieValue)
-//    console.log(slider.audioValue)
-//    console.log(slider.difference)
-//    console.log(slider.position)
-//    console.log(slider.max)
+
+//    console.log("movie value: ", slider.movieValue)
+//    console.log("audio value: ", slider.audioValue)
+//    console.log("difference: ", slider.difference)
+//    console.log("which one is further: ", slider.position)
+//    console.log("slider max: ", slider.max)
 
     var movieSlider = document.getElementById("movieSlider");
     var audioSlider = document.getElementById("audioSlider");
+
+    movieSlider.value = slider.movieValue;
+    audioSlider.value = slider.audioValue;
+    movieSlider.max = slider.max;
+    audioSlider.max = slider.max;
 
     localStorage.setItem("movieMax", slider.max);
     localStorage.setItem("audioMax", slider.max);
@@ -301,7 +293,10 @@ function loadSlider(title)
     localStorage.setItem("mvalue", slider.movieValue);
     localStorage.setItem("avalue", slider.audioValue);
 
-    window.location.href = "sliders.html";
+    secondsToTime(movieSlider.value, mHr, mMin, mSec)
+    secondsToTime(audioSlider.value, aHr, aMin, aSec)
+
+
 
 }
 
@@ -309,6 +304,28 @@ function start() {
 
     showSliders()
     pageload()
+
+}
+
+function secondsToTime(secs, h, m, s)
+{
+    var hours = Math.floor(secs / (60 * 60));
+
+    var divisor_for_minutes = secs % (60 * 60);
+    var minutes = Math.floor(divisor_for_minutes / 60);
+
+    var divisor_for_seconds = divisor_for_minutes % 60;
+    var seconds = Math.ceil(divisor_for_seconds);
+
+    var obj = {
+        "h": hours,
+        "m": minutes,
+        "s": seconds
+    };
+
+    h.innerHTML = hours;
+    m.innerHTML = minutes;
+    s.innerHTML = seconds;
 
 }
 
